@@ -2,17 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Becky's Tree</title>
+  <title>Snowman Snowfall</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
       background: #e3f2fd;
       overflow: hidden;
-      font-family: 'Comic Sans MS', 'Quicksand', cursive;
-      text-align: center;
       height: 100%;
       width: 100%;
+      font-family: 'Comic Sans MS', 'Quicksand', cursive;
+      text-align: center;
+      cursor: pointer;
     }
 
     h1 {
@@ -24,22 +25,20 @@
       position: relative;
     }
 
-    #tree {
+    #snowman {
       position: absolute;
-      top: 50%;
+      bottom: 0;
       left: 50%;
-      transform: translate(-50%, -50%);
-      width: 70vw;
-      max-width: 1000px;
-      cursor: pointer;
-      z-index: 1;
+      transform: translateX(-50%);
+      width: 250px;
+      z-index: 2;
     }
 
-    .falling-item {
+    .snowflake {
       position: absolute;
-      width: 60px;
+      width: 40px;
       top: 0;
-      animation: fall-spin 4s linear forwards;
+      animation: fall-spin 5s linear forwards;
       z-index: 3;
     }
 
@@ -57,32 +56,28 @@
 </head>
 <body>
 
-  <h1>Becky's Tree</h1>
-  <img id="tree" src="https://img.freepik.com/free-vector/tree_1308-36471.jpg" alt="Tree">
+  <h1>Becky's Winter</h1>
+
+  <img id="snowman" src="https://static.vecteezy.com/system/resources/previews/022/061/819/original/christmas-snowman-with-transparent-background-free-png.png" alt="Snowman">
 
   <script>
-    const tree = document.getElementById('tree');
+    document.addEventListener('click', () => {
+      const flake = document.createElement('img');
+      flake.classList.add('snowflake');
 
-    tree.addEventListener('click', () => {
-      const item = document.createElement('img');
-      item.classList.add('falling-item');
-
-      // 1 in 5 chance for acorn
-      const isAcorn = Math.floor(Math.random() * 5) === 0;
-      item.src = isAcorn
-        ? 'https://static.vecteezy.com/system/resources/previews/021/333/164/original/acorn-fruit-isolated-on-a-transparent-background-png.png'
-        : 'https://static.vecteezy.com/system/resources/previews/024/073/876/original/red-apple-illustration-png.png';
+      // Snowflake image (can replace this link if you'd like)
+      flake.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Snowflake_icon.svg/2048px-Snowflake_icon.svg.png';
 
       // Random horizontal position within viewport
-      const maxX = window.innerWidth - 60;
-      item.style.left = Math.floor(Math.random() * maxX) + 'px';
+      const maxX = window.innerWidth - 40;
+      flake.style.left = Math.floor(Math.random() * maxX) + 'px';
 
-      document.body.appendChild(item);
+      document.body.appendChild(flake);
 
-      // Remove item after falling
+      // Remove after falling
       setTimeout(() => {
-        item.remove();
-      }, 4000);
+        flake.remove();
+      }, 5000);
     });
   </script>
 
