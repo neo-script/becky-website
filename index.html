@@ -11,18 +11,7 @@
       overflow: hidden;
       height: 100%;
       width: 100%;
-      font-family: 'Comic Sans MS', 'Quicksand', cursive;
-      text-align: center;
       cursor: pointer;
-    }
-
-    h1 {
-      margin: 20px 0;
-      font-size: 3em;
-      color: #4e342e;
-      text-shadow: 2px 2px #d7ccc8;
-      z-index: 5;
-      position: relative;
     }
 
     #snowman {
@@ -34,9 +23,9 @@
       z-index: 2;
     }
 
-    .snowflake {
+    .snowball {
       position: absolute;
-      width: 40px;
+      width: 50px;
       top: 0;
       animation: fall-spin 5s linear forwards;
       z-index: 3;
@@ -56,27 +45,25 @@
 </head>
 <body>
 
-  <h1>Becky's Winter</h1>
-
   <img id="snowman" src="https://static.vecteezy.com/system/resources/previews/022/061/819/original/christmas-snowman-with-transparent-background-free-png.png" alt="Snowman">
 
   <script>
     document.addEventListener('click', () => {
-      const flake = document.createElement('img');
-      flake.classList.add('snowflake');
+      const snowball = document.createElement('img');
+      snowball.classList.add('snowball');
 
-      // Snowflake image (can replace this link if you'd like)
-      flake.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Snowflake_icon.svg/2048px-Snowflake_icon.svg.png';
+      // Snowball image
+      snowball.src = 'https://pngimg.com/uploads/snowball/snowball_PNG19.png';
 
       // Random horizontal position within viewport
-      const maxX = window.innerWidth - 40;
-      flake.style.left = Math.floor(Math.random() * maxX) + 'px';
+      const maxX = window.innerWidth - 50;
+      snowball.style.left = Math.floor(Math.random() * maxX) + 'px';
 
-      document.body.appendChild(flake);
+      document.body.appendChild(snowball);
 
       // Remove after falling
       setTimeout(() => {
-        flake.remove();
+        snowball.remove();
       }, 5000);
     });
   </script>
