@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Becky's Tree</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #e3f2fd;
+      overflow-x: hidden;
+      font-family: 'Comic Sans MS', 'Quicksand', cursive;
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 20px;
+      font-size: 3em;
+      color: #4e342e;
+      text-shadow: 2px 2px #d7ccc8;
+    }
+
+    #tree {
+      width: 300px;
+      cursor: pointer;
+      margin-top: 30px;
+    }
+
+    .falling-item {
+      position: absolute;
+      width: 50px;
+      top: 200px;
+      animation: fall-spin 3s linear forwards;
+      z-index: 2;
+    }
+
+    @keyframes fall-spin {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(150vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Becky's Tree</h1>
+  <img id="tree" src="https://img.freepik.com/free-vector/tree_1308-36471.jpg" alt="Tree">
+
+  <script>
+    const tree = document.getElementById('tree');
+
+    tree.addEventListener('click', () => {
+      const item = document.createElement('img');
+      item.classList.add('falling-item');
+
+      // 1 in 5 chance for acorn
+      const isAcorn = Math.floor(Math.random() * 5) === 0;
+      item.src = isAcorn
+        ? 'https://static.vecteezy.com/system/resources/previews/021/333/164/original/acorn-fruit-isolated-on-a-transparent-background-png.png'
+        : 'https://static.vecteezy.com/system/resources/previews/024/073/876/original/red-apple-illustration-png.png';
+
+      // Random horizontal position
+      const maxX = window.innerWidth - 50;
+      item.style.left = Math.floor(Math.random() * maxX) + 'px';
+
+      document.body.appendChild(item);
+
+      // Remove after falling
+      setTimeout(() => {
+        item.remove();
+      }, 3000);
+    });
+  </script>
+
+</body>
+</html>
